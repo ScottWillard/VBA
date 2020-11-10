@@ -1,0 +1,54 @@
+'ThisWorkbook
+
+Private Sub Workbook_Open()
+
+    'Autosave every 10 minutes
+    If ThisWorkbook.Path = "SomeDriveX:" Then Application.OnTime Now + TimeValue("00:10:00"), "SaveFunction"
+    
+    'Turn off screen flashes for updates
+    Application.ScreenUpdating = False
+    
+    For Sheet = 1 To 8
+    Sheets("Press " & Sheet).Activate
+    ActiveSheet.Unprotect Password:="password"
+
+    'Copies and pastes one cell value to another cell
+    Range("1stNamedCell").Copy ("WhereYouWantThe1stNamedCellToGo")
+            Application.GoTo Reference:="ANamedCell"
+    With Selection.Font
+        .ThemeColor = xlThemeColorDark1
+        'Hides the cell from view but retains it's value for later calculation
+        .TintAndShade = 0
+    End With
+    
+    'Set cell value automatically, save the user time and ensure accurate recording of data
+    If TimeValue(Now()) > TimeValue("TimeParamater1") And TimeValue(Now()) <= TimeValue("TimeParamater2") Then
+    ActiveSheet.Range("CellThatRespondsToDateTimeValue").Value = 1
+    Range("CellThatRespondsToDateTimeValue") = 1
+
+    ElseIf TimeValue(Now()) > TimeValue("imeParamater2") And TimeValue(Now()) <= TimeValue("imeParamater3") Then
+    ActiveSheet.Range("CellThatRespondsToDateTimeValue").Value = 2
+    Range("CellThatRespondsToDateTimeValue") = 2
+    
+    Else
+    ActiveSheet.Range("CellThatRespondsToDateTimeValue").Value = 3
+    Range("CellThatRespondsToDateTimeValue") = 3
+    
+    End If
+    
+    'Set date for Date cell automatically
+    ActiveSheet.Range("Date").Value = Format(Now(), "MM/DD/YYYY")
+    Range("DateCellForTodaysDate") = Format(Now(), "MM/DD/YYYY")
+    
+    'Get UserName from Domain automatically
+    Range("USERNAME").Value = Application.UserName
+    
+    'Protect Cells From User Changing the Value/Formula
+    ActiveSheet.Protect DrawingObjects:=False, Contents:=True, Scenarios:= _
+        False, AllowFormattingColumns:=True
+        Next Sheet
+    
+    Application.GoTo Reference:="NamedCell"
+    Application.ScreenUpdating = True
+    
+End Sub
