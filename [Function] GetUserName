@@ -1,0 +1,5 @@
+Function GetUserName()
+
+GetUserName = Application.UserName
+
+End Function
