@@ -1,0 +1,10 @@
+Public Sub importTo(Location As Range, Query As String, database As String)
+    Dim rst As adodb.Recordset
+    Set rst = executeQuery(Query, database)
+    
+    For iCols = 0 To rst.Fields.Count - 1
+        Location.Offset(0, iCols).Value = rst.Fields(iCols).Name
+    Next
+    
+    Location.Offset(1, 0).CopyFromRecordset rst
+End Sub
