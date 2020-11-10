@@ -1,0 +1,14 @@
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui"> 
+  <ribbon startFromScratch="false"> 
+    <tabs> 
+      <tab id="NamedTab" label="Pig Tab"> 
+        <group id="ButtonsInTheTab" label="GroupOfButtons"> 
+          <button id="Pig" imageMso="Piggy" size="large" 
+            label="ThisIsALargeButton" 
+            screentip="This appears in a little window" 
+            onAction="NamedModule.MacroName"/> 
+        </group> 
+      </tab> 
+    </tabs> 
+  </ribbon> 
+</customUI>
