@@ -1,0 +1,15 @@
+Private Function executeQuery(Query As String, database As String) As adodb.Recordset
+    Dim cnn As New adodb.Connection
+    Dim rst As New adodb.Recordset
+    Dim ConnectionString As String
+    
+    ConnectionString = "Provider=SQLOLEDB.1;Persist Security Info=True;User ID=USERNAME;Password=PASSWORD;" _
+        & "Data Source=DATABASE;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;" _
+        & "Use Encryption for Data=False;Tag with column collation when possible=False;Initial Catalog=" & database
+        
+    cnn.Open ConnectionString
+    cnn.CommandTimeout = 120
+    rst.Open Query, cnn
+
+    Set executeQuery = rst
+End Function
